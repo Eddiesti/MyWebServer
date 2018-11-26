@@ -1,16 +1,17 @@
-package ru.otus.hibernate;
+package ru.otus.hibernate.service;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import ru.otus.test.User;
+import ru.otus.hibernate.dao.UsersDAO;
+import ru.otus.hibernate.entity.AdressDataSet;
+import ru.otus.hibernate.entity.DataSet;
+import ru.otus.hibernate.entity.PhoneDataSet;
+import ru.otus.hibernate.entity.UserDataSet;
 
-import java.util.function.Function;
-
-public class DBServiceHibernateImpl implements DBService{
+public class DBServiceHibernateImpl implements DBService {
     private final SessionFactory sessionFactory;
 
     public DBServiceHibernateImpl() {
@@ -26,10 +27,8 @@ public class DBServiceHibernateImpl implements DBService{
         configuration.setProperty("hibernate.connection.password", "root");
         configuration.setProperty("hibernate.show_sql", "true");
         configuration.setProperty("hibernate.hbm2ddl.auto", "update");
-        sessionFactory = createSessionFactory(configuration);
-    }
+        configuration.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 
-    public DBServiceHibernateImpl(Configuration configuration) {
         sessionFactory = createSessionFactory(configuration);
     }
 
@@ -49,23 +48,14 @@ public class DBServiceHibernateImpl implements DBService{
     }
 
     public <T extends DataSet> T load(long id, T clazz) {
-        return runInSession(session -> {
-            UsersDAO dao = new UsersDAO(session);
-            T object = dao.load(id, clazz);
-            return object;
-        });
+        Session session = sessionFactory.openSession();
+        UsersDAO dao = new UsersDAO(session);
+        T object = dao.load(id, clazz);
+        session.close();
+        return object;
     }
 
     public void shutdown() {
         sessionFactory.close();
-    }
-
-    private <R> R runInSession(Function<Session, R> function) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            R result = function.apply(session);
-            transaction.commit();
-            return result;
-        }
     }
 }

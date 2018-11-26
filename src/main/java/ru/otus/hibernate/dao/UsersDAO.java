@@ -1,6 +1,8 @@
-package ru.otus.hibernate;
+package ru.otus.hibernate.dao;
 
 import org.hibernate.Session;
+import ru.otus.hibernate.entity.DataSet;
+
 
 public class UsersDAO {
     private Session session;

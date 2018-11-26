@@ -1,9 +1,9 @@
-package ru.otus.hibernate;
+package ru.otus.hibernate.entity;
 
 import javax.persistence.*;
 
 @MappedSuperclass
-abstract class DataSet {
+public abstract class DataSet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

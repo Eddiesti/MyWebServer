@@ -1,11 +1,12 @@
-package ru.otus.hibernate;
+package ru.otus.hibernate.entity;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users") public class UserDataSet extends DataSet {
+@Table(name = "users")
+public class UserDataSet extends DataSet {
     private int age;
 
     private String name;
@@ -42,9 +43,6 @@ import java.util.Objects;
         return Objects.hash(age, name, phones, adress);
     }
 
-    public List<PhoneDataSet> getPhones() {
-        return phones;
-    }
 
     public void setPhones(List<PhoneDataSet> phones) {
         this.phones = phones;
@@ -54,24 +52,14 @@ import java.util.Objects;
     @JoinColumn(name = "ADRESS_ID")
     private AdressDataSet adress;
 
-    public int getAge() {
-        return age;
-    }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public AdressDataSet getAdress() {
-        return adress;
     }
 
     public void setAdress(AdressDataSet adress) {

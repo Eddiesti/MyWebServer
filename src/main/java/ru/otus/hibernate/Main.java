@@ -1,5 +1,11 @@
 package ru.otus.hibernate;
 
+import ru.otus.hibernate.entity.AdressDataSet;
+import ru.otus.hibernate.entity.PhoneDataSet;
+import ru.otus.hibernate.entity.UserDataSet;
+import ru.otus.hibernate.service.DBService;
+import ru.otus.hibernate.service.DBServiceHibernateImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 

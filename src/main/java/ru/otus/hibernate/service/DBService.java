@@ -1,4 +1,6 @@
-package ru.otus.hibernate;
+package ru.otus.hibernate.service;
+
+import ru.otus.hibernate.entity.DataSet;
 
 public interface DBService {
     <T extends DataSet> void save(T user);
