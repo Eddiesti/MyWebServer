@@ -5,7 +5,7 @@ public class DBServiceImpl implements DBService {
 
     }
 
-    public <T extends DataSet> T load(long id, Class<T> clazz) {
+    public <T extends DataSet> T load(long id, T clazz) {
         return null;
     }
 }

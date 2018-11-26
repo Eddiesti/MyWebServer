@@ -1,19 +1,58 @@
 package ru.otus.hibernate;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
-@Table(name = "users")
-public class UserDataSet extends DataSet {
+@Table(name = "users") public class UserDataSet extends DataSet {
     private int age;
+
     private String name;
 
     public UserDataSet() {
     }
 
-    //@OneToOne(optional = false, cascade = CascadeType.ALL, mappedBy = "user")
-//    @Transient
-//    private AdressDataSet adress;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
+    private List<PhoneDataSet> phones;
+
+    @Override
+    public String toString() {
+        return "UserDataSet{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                ", phones=" + phones +
+                ", adress=" + adress +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDataSet that = (UserDataSet) o;
+        return age == that.age &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(phones, that.phones) &&
+                Objects.equals(adress, that.adress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(age, name, phones, adress);
+    }
+
+    public List<PhoneDataSet> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<PhoneDataSet> phones) {
+        this.phones = phones;
+    }
+
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ADRESS_ID")
+    private AdressDataSet adress;
 
     public int getAge() {
         return age;
@@ -31,11 +70,11 @@ public class UserDataSet extends DataSet {
         this.name = name;
     }
 
-//    public AdressDataSet getAdress() {
-//        return adress;
-//    }
-//
-//    public void setAdress(AdressDataSet adress) {
-//        this.adress = adress;
-//    }
+    public AdressDataSet getAdress() {
+        return adress;
+    }
+
+    public void setAdress(AdressDataSet adress) {
+        this.adress = adress;
+    }
 }

@@ -13,7 +13,7 @@ public class UsersDAO {
         session.save(user);
     }
 
-    public <T extends DataSet> T load(long id, Class<T> clazz) {
-        return session.load(clazz,id);
+    public <T extends DataSet> T load(long id, T clazz) {
+        return (T) session.load(clazz.getClass(), id);
     }
 }
