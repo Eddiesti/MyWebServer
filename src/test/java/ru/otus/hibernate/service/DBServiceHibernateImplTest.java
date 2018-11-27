@@ -3,6 +3,7 @@ package ru.otus.hibernate.service;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.*;
 import ru.otus.hibernate.entity.AdressDataSet;
 import ru.otus.hibernate.entity.PhoneDataSet;
 import ru.otus.hibernate.entity.UserDataSet;
@@ -10,18 +11,22 @@ import ru.otus.hibernate.entity.UserDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 
 public class DBServiceHibernateImplTest {
-    DBServiceHibernateImpl dbService = null;
-    UserDataSet userDataSet = null;
+    private DBServiceHibernateImpl dbService = null;
+    private UserDataSet userDataSet = null;
+    private int ID = 0;
 
     @Before
     public void init() {
+        ID = 1;
         dbService = new DBServiceHibernateImpl();
         PhoneDataSet phoneDataSet = new PhoneDataSet();
         PhoneDataSet phoneDataSet1 = new PhoneDataSet();
         phoneDataSet.setNumber("+79777777");
-        phoneDataSet1.setNumber("79666666");
+        phoneDataSet1.setNumber("+928349234");
         AdressDataSet addressDataSet = new AdressDataSet();
         addressDataSet.setStreet("7");
         userDataSet = new UserDataSet();
@@ -31,7 +36,7 @@ public class DBServiceHibernateImplTest {
         userDataSet.setAdress(addressDataSet);
         phoneDataSet.setUsers(userDataSet);
         phoneDataSet1.setUsers(userDataSet);
-        List<PhoneDataSet> list = new ArrayList();
+        List<PhoneDataSet> list = new ArrayList<>();
         list.add(phoneDataSet);
         list.add(phoneDataSet1);
         userDataSet.setPhones(list);
@@ -41,14 +46,13 @@ public class DBServiceHibernateImplTest {
     public void save() {
         dbService.save(userDataSet);
 
+        UserDataSet actual = dbService.load(ID, userDataSet.getClass());
+        assertNotNull(actual.getId());
+        assertEquals(userDataSet,actual);
     }
 
-    @Test
-    public void load() {
-        dbService.load(1, userDataSet);
-    }
     @After
-    public void close(){
+    public void close() {
         dbService.shutdown();
     }
 }
