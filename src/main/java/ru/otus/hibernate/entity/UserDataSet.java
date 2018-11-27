@@ -1,6 +1,10 @@
 package ru.otus.hibernate.entity;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.hibernate.mapping.Collection;
+
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,7 +38,7 @@ public class UserDataSet extends DataSet {
         UserDataSet that = (UserDataSet) o;
         return age == that.age &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(phones, that.phones) &&
+                CollectionUtils.isEqualCollection(phones, that.phones) &&
                 Objects.equals(adress, that.adress);
     }
 
@@ -42,7 +46,6 @@ public class UserDataSet extends DataSet {
     public int hashCode() {
         return Objects.hash(age, name, phones, adress);
     }
-
 
     public void setPhones(List<PhoneDataSet> phones) {
         this.phones = phones;
