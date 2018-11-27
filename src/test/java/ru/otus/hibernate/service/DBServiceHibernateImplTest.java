@@ -46,9 +46,9 @@ public class DBServiceHibernateImplTest {
     public void save() {
         dbService.save(userDataSet);
 
-        UserDataSet actual = dbService.load(ID, userDataSet.getClass());
-        assertNotNull(actual.getId());
-        assertEquals(userDataSet,actual);
+        UserDataSet exp = dbService.load(ID, userDataSet.getClass());
+        assertNotNull(exp.getId());
+        assertEquals(exp,userDataSet);
     }
 
     @After

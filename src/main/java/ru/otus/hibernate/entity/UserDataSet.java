@@ -23,12 +23,12 @@ public class UserDataSet extends DataSet {
 
     @Override
     public String toString() {
-        return "UserDataSet{" +
+        return
                 "age=" + age +
                 ", name='" + name + '\'' +
                 ", phones=" + phones +
-                ", adress=" + adress +
-                '}';
+                ", adress=" + adress;
+
     }
 
     @Override

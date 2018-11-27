@@ -25,7 +25,7 @@ public class Main {
         userDataSet.setAdress(addressDataSet);
         phoneDataSet.setUsers(userDataSet);
         phoneDataSet1.setUsers(userDataSet);
-        List<PhoneDataSet> list = new ArrayList();
+        List<PhoneDataSet> list = new ArrayList<>();
         list.add(phoneDataSet);
         list.add(phoneDataSet1);
         userDataSet.setPhones(list);

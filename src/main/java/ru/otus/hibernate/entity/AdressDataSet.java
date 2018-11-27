@@ -32,8 +32,7 @@ public class AdressDataSet extends DataSet {
 
     @Override
     public String toString() {
-        return "AdressDataSet{" +
-                "street='" + street + '\'' +
-                '}';
+        return
+                "street='" + street;
     }
 }
