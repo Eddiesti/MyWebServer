@@ -1,11 +1,11 @@
-package ru.otus.hibernate.service;
+package ru.otus.hibernate.config;
 
 import ru.otus.hibernate.entity.AdressDataSet;
 import ru.otus.hibernate.entity.DataSet;
 import ru.otus.hibernate.entity.PhoneDataSet;
 import ru.otus.hibernate.entity.UserDataSet;
 
-class HibernateConfiguration {
+public class HibernateConfiguration {
     public static org.hibernate.cfg.Configuration setup() {
         org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
         configuration.addAnnotatedClass(UserDataSet.class);

@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import ru.otus.hibernate.config.HibernateConfiguration;
 import ru.otus.hibernate.dao.UsersDAO;
 import ru.otus.hibernate.entity.DataSet;
 

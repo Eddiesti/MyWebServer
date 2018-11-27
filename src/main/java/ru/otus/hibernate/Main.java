@@ -20,7 +20,6 @@ public class Main {
         addressDataSet.setStreet("7");
         UserDataSet userDataSet = new UserDataSet();
         userDataSet.setName("Roman");
-
         userDataSet.setAge(17);
         userDataSet.setAdress(addressDataSet);
         phoneDataSet.setUsers(userDataSet);
