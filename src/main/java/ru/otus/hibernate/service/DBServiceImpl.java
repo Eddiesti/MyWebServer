@@ -12,6 +12,17 @@ public class DBServiceImpl implements DBService {
     }
 
     @Override
+    public <T extends DataSet> String getNameById(long id, Class<T> clazz) {
+        return null;
+    }
+
+
+    @Override
+    public Integer getCountUsers() {
+        return null;
+    }
+
+    @Override
     public void shutdown() {
 
     }

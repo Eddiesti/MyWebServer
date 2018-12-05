@@ -9,7 +9,6 @@ import java.util.Objects;
 public class AdressDataSet extends DataSet {
     private String street;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

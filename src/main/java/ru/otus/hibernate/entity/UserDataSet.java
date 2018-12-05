@@ -51,6 +51,10 @@ public class UserDataSet extends DataSet {
         this.phones = phones;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "ADRESS_ID")
     private AdressDataSet adress;

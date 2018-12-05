@@ -39,6 +39,24 @@ public class DBServiceHibernateImpl implements DBService {
         return object;
     }
 
+    @Override
+    public <T extends DataSet> String getNameById(long id, Class<T> clazz) {
+        Session session = sessionFactory.openSession();
+        UsersDAO dao = new UsersDAO(session);
+        String nameById = dao.getNameById(id, clazz);
+        session.close();
+        return nameById;
+    }
+
+
+    @Override
+    public Integer getCountUsers() {
+        Session session = sessionFactory.openSession();
+        UsersDAO dao = new UsersDAO(session);
+        Integer countUsers = dao.getCountUsers();
+        return countUsers;
+    }
+
     public void shutdown() {
         sessionFactory.close();
     }

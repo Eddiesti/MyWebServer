@@ -1,6 +1,8 @@
 package ru.otus.hibernate.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @MappedSuperclass
 public abstract class DataSet {
@@ -12,10 +14,7 @@ public abstract class DataSet {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public DataSet() {
+        List list = new ArrayList();
     }
 }
