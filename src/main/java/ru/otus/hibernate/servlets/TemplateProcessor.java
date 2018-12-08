@@ -10,12 +10,12 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
- class TemplateProcessor {
-    private static final String HTML_DIR = "html_resourses";
+public class TemplateProcessor {
+    private static final String HTML_DIR = "templates";
 
     private final Configuration configuration;
 
-     TemplateProcessor() throws IOException {
+    public TemplateProcessor() throws IOException {
         configuration = new Configuration(Configuration.VERSION_2_3_28);
         configuration.setDirectoryForTemplateLoading(new File(HTML_DIR));
         configuration.setDefaultEncoding("UTF-8");
