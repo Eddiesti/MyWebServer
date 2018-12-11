@@ -5,25 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-<form>
+<form action="add" method="post">
     Name: <input type="text" name="name"/>
-    <br/>
+    <br/><br/>
     Age: <input type="text" name="age"/>
-    <br/>
+    <br/><br/>
     Phone: <input type="text" name="phone"/>
-    <br/>
-    <br/>
+    <br/><br/>
     Adress: <input type="text" name="adress"/>
-    <br/>
-    <input type="submit" value="Sent">
+    <br/><br/>
+    <input type="submit" value="Add user">
 </form>
 <br/>
-<form>
+<form action="data_info.html" method="get">
     Id: <input type="text" name="id"/>
-    <input type="submit" value="Sent"><br/>
-    <p>User name: ${name}</p>
+    <input type="submit" value="Find user"><br/>
+    <p>User name:${name!}</p>
 </form>
-
 <form >
     <p>Count users: ${count}</p>
 </form>
