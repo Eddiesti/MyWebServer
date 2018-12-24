@@ -20,6 +20,7 @@ public class HibernateConfiguration {
         configuration.setProperty("hibernate.show_sql", "true");
         configuration.setProperty("hibernate.hbm2ddl.auto", "update");
         configuration.setProperty("hibernate.enable_lazy_load_no_trans", "true");
+        configuration.setProperty("hibernate.connection.characterEncoding","utf8");
         return configuration;
     }
 }
