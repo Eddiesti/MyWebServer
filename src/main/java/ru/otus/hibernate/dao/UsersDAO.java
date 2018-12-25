@@ -23,8 +23,11 @@ public class UsersDAO {
         return  session.load(clazz, id);
     }
 
-    public <T extends DataSet> String getNameById(long id, Class<T> clazz){
+   public <T extends DataSet> String getNameById(long id, Class<T> clazz){
         T user =  session.load(clazz, id);
+        if(id > getCountUsers()){
+            throw  new IllegalArgumentException("User not found");
+        }
         return  user.toString();
     }
     public <T extends DataSet> Integer getCountUsers(){
