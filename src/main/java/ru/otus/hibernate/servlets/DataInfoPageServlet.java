@@ -29,7 +29,7 @@ public class DataInfoPageServlet extends HttpServlet {
             if (nameById != null) {
                 pageVariables.put("name", nameById);
             }
-        } else throw new IllegalArgumentException("User not found");
+        } 
 
         String pageText = templateProcessor.getPage("data_info.html", pageVariables);
         response.getWriter().println(pageText);
