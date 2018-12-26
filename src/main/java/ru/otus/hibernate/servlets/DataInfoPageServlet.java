@@ -1,7 +1,8 @@
 package ru.otus.hibernate.servlets;
 
-
-import javassist.tools.rmi.ObjectNotFoundException;
+import org.hibernate.ObjectNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.otus.hibernate.entity.UserDataSet;
 import ru.otus.hibernate.service.DBService;
 
@@ -13,6 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataInfoPageServlet extends HttpServlet {
+    private static Logger logger = LoggerFactory.getLogger(AddUserServlet.class);
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setCharacterEncoding("UTF-8");
         Map<String, Object> pageVariables = new HashMap<>();
@@ -23,16 +26,20 @@ public class DataInfoPageServlet extends HttpServlet {
         pageVariables.put("count", service.getCountUsers());
 
         String idString = request.getParameter("id");
+        try {
+            if (idString != null && !idString.isEmpty()) {
+                String userById;
 
-        if (idString != null && !idString.isEmpty()) {
-            long id = Long.parseLong(idString);
-            String nameById;
-            nameById = service.getNameById(id, UserDataSet.class);
-            if (nameById != null) {
-                pageVariables.put("name", nameById);
+                long id = Long.parseLong(idString);
+                userById = service.getUserById(id, UserDataSet.class);
+                if (userById != null) {
+                    pageVariables.put("name", userById);
+                }
             }
-        } else throw new IllegalArgumentException("User not found");
-
+        } catch (ObjectNotFoundException ex) {
+            logger.error("User not fount");
+            response.sendRedirect("/error.html");
+        }
         String pageText = templateProcessor.getPage("data_info.html", pageVariables);
         response.getWriter().println(pageText);
     }
@@ -41,3 +48,4 @@ public class DataInfoPageServlet extends HttpServlet {
 
     }
 }
+

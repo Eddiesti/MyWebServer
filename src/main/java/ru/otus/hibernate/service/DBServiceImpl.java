@@ -12,7 +12,7 @@ public class DBServiceImpl implements DBService {
     }
 
     @Override
-    public <T extends DataSet> String getNameById(long id, Class<T> clazz) {
+    public <T extends DataSet> String getUserById(long id, Class<T> clazz) {
         return null;
     }
 

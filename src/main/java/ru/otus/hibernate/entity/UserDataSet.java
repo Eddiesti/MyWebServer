@@ -25,9 +25,9 @@ public class UserDataSet extends DataSet {
     public String toString() {
         return
                 "age=" + age +
-                        ", name='" + name + '\'' +
-                        ", phones=" + phones +
-                        ", adress=" + adress;
+                ", name='" + name + '\'' +
+                ", phones=" + phones +
+                ", adress=" + adress;
 
     }
 
