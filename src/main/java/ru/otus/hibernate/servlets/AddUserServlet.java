@@ -1,11 +1,11 @@
 package ru.otus.hibernate.servlets;
 
-import org.h2.bnf.context.DbColumn;
+
 import ru.otus.hibernate.entity.AdressDataSet;
 import ru.otus.hibernate.entity.PhoneDataSet;
 import ru.otus.hibernate.entity.UserDataSet;
 import ru.otus.hibernate.service.DBService;
-import ru.otus.hibernate.service.DBServiceHibernateImpl;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,18 +26,18 @@ public class AddUserServlet extends HttpServlet {
         DBService service = (DBService) getServletContext().getAttribute("dbService");
         String name = request.getParameter("name");
         if (name.equals("")) {
-            throw new IllegalArgumentException("Name can't be null");
+            response.sendRedirect("/error.html");
         }
 
         String age = request.getParameter("age");
         int parseAge = Integer.parseInt(age);
         if (parseAge < 5 || parseAge > 100) {
-            throw new IllegalArgumentException("Age can't be below 5");
+            response.sendRedirect("/error.html");
         }
         String number = request.getParameter("phone");
 
         if (number.length() < 8) {
-            throw new IllegalArgumentException("Invalid phone number");
+            response.sendRedirect("/error.html");
         }
 
         String street = request.getParameter("adress");
