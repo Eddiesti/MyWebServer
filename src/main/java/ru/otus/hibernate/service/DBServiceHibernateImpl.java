@@ -25,36 +25,37 @@ public class DBServiceHibernateImpl implements DBService {
 
 
     public <T extends DataSet> void save(T user) {
-        Session session = sessionFactory.openSession();
-        UsersDAO usersDAO = new UsersDAO(session);
-        usersDAO.save(user);
-        session.close();
+        try (Session session = sessionFactory.openSession()) {
+            UsersDAO usersDAO = new UsersDAO(session);
+            usersDAO.save(user);
+        }
     }
 
     public <T extends DataSet> T load(long id, Class<T> clazz) {
-        Session session = sessionFactory.openSession();
-        UsersDAO dao = new UsersDAO(session);
-        T object = dao.load(clazz, id);
-        session.close();
-        return object;
+        try (Session session = sessionFactory.openSession()) {
+            UsersDAO dao = new UsersDAO(session);
+            T object = dao.load(clazz, id);
+            return object;
+        }
     }
 
     @Override
-    public <T extends DataSet> String getNameById(long id, Class<T> clazz) {
-        Session session = sessionFactory.openSession();
-        UsersDAO dao = new UsersDAO(session);
-        String nameById = dao.getNameById(id, clazz);
-        session.close();
-        return nameById;
+    public <T extends DataSet> String getUserById(long id, Class<T> clazz) {
+        try (Session session = sessionFactory.openSession()) {
+            UsersDAO dao = new UsersDAO(session);
+            String userById = dao.getUserById(id, clazz);
+            return userById;
+        }
     }
 
 
     @Override
     public Integer getCountUsers() {
-        Session session = sessionFactory.openSession();
-        UsersDAO dao = new UsersDAO(session);
-        Integer countUsers = dao.getCountUsers();
-        return countUsers;
+        try (Session session = sessionFactory.openSession()) {
+            UsersDAO dao = new UsersDAO(session);
+            Integer countUsers = dao.getCountUsers();
+            return countUsers;
+        }
     }
 
     public void shutdown() {
