@@ -37,8 +37,9 @@ public class DataInfoPageServlet extends HttpServlet {
                 }
             }
         } catch (ObjectNotFoundException ex) {
-            logger.error("User not fount");
+            logger.info("User not found");
             response.sendRedirect("/error.html");
+            return;
         }
         String pageText = templateProcessor.getPage("data_info.html", pageVariables);
         response.getWriter().println(pageText);
@@ -48,4 +49,3 @@ public class DataInfoPageServlet extends HttpServlet {
 
     }
 }
-
