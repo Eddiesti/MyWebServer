@@ -72,7 +72,6 @@ public class AddUserServlet extends HttpServlet {
         user.setAdress(adress);
         service.save(user);
         response.sendRedirect("/data_info.html");
-        return;
     }
 }
 
